@@ -15,12 +15,14 @@ from sklearn.linear_model import LinearRegression,Lasso,Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error,r2_score
 from sklearn.metrics import r2_score
-st.title('Used Car Price Predictor')
+st.title('Used Car for Sale')
 st.text('Find the right car as per your choice')
 df=pd.read_csv('Car_prediction_app.csv')
-st.image('car image.jpeg')
+st.image('car_image.jpeg')
 price_range=st.slider("Price Range",min_value=int(df['price'].min()),max_value=int(df['price'].max()),step=(5000),value=int(df['price'].min()))
-df.loc[(df['price']<=price_range)]
+number_of_cylinders=st.slider("no_of_cylinders",min_value=int(df['no_of_cylinders'].min()),max_value=int(df['no_of_cylinders'].max()),step=(1),value=int(df['no_of_cylinders'].min()))
+mileage_range=st.slider("mileage",min_value=int(df['mileage'].min()),max_value=int(df['mileage'].max()),step=(2),value=int(df['mileage'].min()))
+df.loc[(df['price']<=price_range) & (df['no_of_cylinders']<=number_of_cylinders) & (df['mileage']<=mileage_range)]
 st.text("Price selected is "+ str(price_range))
 st.header('Price predictor')
 sel_box_var=st.selectbox("Select Method",['Linear','Ridge','Lasso'],index=0)
@@ -76,5 +78,12 @@ for i in df_new.keys():
     except:
         pass
 st.text('Predicted prices are: ' +str(pred_val+reg.intercept_))
-st.header("Application Details")
-img=st.file_uploader("")
+st.header("Upload your queries")
+img=st.file_uploader("Upload")
+st.text("Details for the representatives to contact you")
+st.text("Enter your address")
+address=st.text_area("Your address here")
+date=st.date_input('Enter a date')
+if st.checkbox("I confirm the date and time",value=False):
+    st.write("Thanks for confirming")
+st.number_input("Rate our site,min_value=1,max_value=10")
