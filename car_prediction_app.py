@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 22 13:11:43 2021
-
-@author: DELL
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
