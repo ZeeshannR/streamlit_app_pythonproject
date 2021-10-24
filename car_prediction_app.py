@@ -50,6 +50,7 @@ elif sel_box_var=='Lasso':
 else:
     df_new['age']=df['age']
     X=df_new
+    Y=df['selling_price']
     model=Ridge()
     X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2)
     reg=model.fit(X_train,Y_train)
