@@ -17,7 +17,6 @@ from sklearn.model_selection import train_test_split
 #from sklearn.metrics import r2_score
 import plotly.graph_objects as go
 import random
-from openpyxl.workbook import Workbook
 
 st.title('Used Car for Sale')
 st.text('Find the right car as per your choice')
